@@ -1,0 +1,72 @@
+C:\Users\Admin-dono\Documents\College\CS3251\Programming1\server-tcp\server-tcp>python server-tcp.py 8591 -d
+Accounts:
+saber excalibur 1000.0
+archer kanshou 3000.0
+gilgamesh ea 9000.0
+Connection address: 127.0.0.1
+Data received: $authreq*
+Sending: $challenge:ADWKMQwGuqg0h2BG8s1djFRx9B47psUVSkPT2iT2FvLZT7nGBNZW26d20q1EN3DM*
+Data received: $hashclient:9e22a7e0115902a93a8e75d3f5e22b61:gilgamesh*
+Hash from client:9e22a7e0115902a93a8e75d3f5e22b61
+Correct Hash: 9e22a7e0115902a93a8e75d3f5e22b61
+Client Authenticated
+Data received: $reqID*
+Sending: $idpass:Mpzxnr1lUuHvaadsjm22VcbecjtPC3C1JIEYeBujYrY0oPXWdGAuY4ryiguXN4Ea*
+Data received: $transquery:Mpzxnr1lUuHvaadsjm22VcbecjtPC3C1JIEYeBujYrY0oPXWdGAuY4ryiguXN4Ea:withdraw:3.0*
+Sending: $transresult:true:8997.0:Mpzxnr1lUuHvaadsjm22VcbecjtPC3C1JIEYeBujYrY0oPXWdGAuY4ryiguXN4Ea*
+Connection closed by client prematurely
+
+
+C:\Users\Admin-dono\Documents\College\CS3251\Programming1\server-tcp\server-tcp>python remotebank-tcp.py 127.0.0.1:8591 "gilgamesh" "ea" withdraw 3 -d
+IP: 127.0.0.1
+Port: 8591
+Random string: ero9mdpqtxicKhz6lZZ0Z1JcAqPSJGoSMv0xK56yZCO1E4eXw80YueMUrsyLtrom
+hash: 445ea7323fe9333279dffe1abf7ce845
+$authresp:true*
+Welcome gilgamesh
+Sending: $reqID*
+Response: $idpass:Dr4dGh5ABzeRRw1whrtyVjh60mA5iiGr2D3tdvEROrKPuTG8yeaQ45DYrApf46gJ*
+Sending: $transquery:Dr4dGh5ABzeRRw1whrtyVjh60mA5iiGr2D3tdvEROrKPuTG8yeaQ45DYrApf46gJ:withdraw:3.0*
+Response: $transresult:true:8994.0:Dr4dGh5ABzeRRw1whrtyVjh60mA5iiGr2D3tdvEROrKPuTG8yeaQ45DYrApf46gJ*
+Transaction completed. Current balance is now 8994.0
+Client exiting normally
+
+
+C:\Users\Admin-dono\Documents\College\CS3251\Programming1\server-tcp\server-tcp>python server-udp.py 9000 -d
+Accounts:
+archer kanshou 3000.0
+saber excalibur 1000.0
+gilgamesh ea 9000.0
+Datagram Received: $authreq*
+Source: 127.0.0.1:50420
+Sending: $challenge:v6zMefdL8hH4iXRHKZcDeiIA4sAXMgCj2cwFly8tcymzFin9L2MaaIjW5a6onl8O*
+Datagram Received: $hashclient:b1d36fc1585da02ee7ce41f3e52f0462:archer*
+Source: 127.0.0.1:50420
+Hash from client:b1d36fc1585da02ee7ce41f3e52f0462
+Correct Hash: b1d36fc1585da02ee7ce41f3e52f0462
+Client Authenticated
+Datagram Received: $reqID*
+Source: 127.0.0.1:50420
+Sending: $idpass:CkLVB1WTMWXRg7sdn9RAaoS0Mdm3feZn8fBmZWdUreUdcK2bDFaiHB18xWYTYO8d*
+Datagram Received: $transquery:CkLVB1WTMWXRg7sdn9RAaoS0Mdm3feZn8fBmZWdUreUdcK2bDFaiHB18xWYTYO8d:deposit:500.0*
+Source: 127.0.0.1:50420
+Sending: $transresult:true:3500.0:CkLVB1WTMWXRg7sdn9RAaoS0Mdm3feZn8fBmZWdUreUdcK2bDFaiHB18xWYTYO8d*
+
+
+
+C:\Users\Admin-dono\Documents\College\CS3251\Programming1\server-tcp\server-tcp>python remotebank-udp.py 127.0.0.1:9000 "archer" "kanshou" deposit 500 -d
+IP: 127.0.0.1
+Port: 9000
+Sending: $authreq*
+Response from server: $challenge:nx926K8WSpIAKc8hMDufjzIWMY77xLTM5DLGoaVKhEnyQCnBgOfAJjQI4qmRh5T9*
+Random string: nx926K8WSpIAKc8hMDufjzIWMY77xLTM5DLGoaVKhEnyQCnBgOfAJjQI4qmRh5T9
+hash: 6641b11725c3a7ec1da947c46d76570b
+Sending: $hashclient:6641b11725c3a7ec1da947c46d76570b:archer*
+Response from server: $authresp:true*
+Welcome archer
+Sending: $reqID*
+Response: $idpass:k92vyTAQ8NCJpoLPSKIK5Ze9QBhBIus4yW8ccH6LTDK2HgiAzV76vPkkzrEiGb1g*
+Sending: $transquery:k92vyTAQ8NCJpoLPSKIK5Ze9QBhBIus4yW8ccH6LTDK2HgiAzV76vPkkzrEiGb1g:deposit:500.0*
+Response: $transresult:true:5000.0:k92vyTAQ8NCJpoLPSKIK5Ze9QBhBIus4yW8ccH6LTDK2HgiAzV76vPkkzrEiGb1g*
+Transaction completed. Current balance: 5000.0
+Client exiting normally
